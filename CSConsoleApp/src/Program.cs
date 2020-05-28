@@ -1,4 +1,5 @@
-﻿using CSConsoleApp.src.housewithoneroom;
+﻿using CSConsoleApp.src.core.services;
+using CSConsoleApp.src.housewithoneroom;
 using CSConsoleApp.src.titles;
 using System;
 
@@ -8,25 +9,17 @@ namespace CSConsoleApp
     {
         static int Main()
         {
-            // Initialize the new Game
-            Game.NewGame();
-
-            // Greet Player
-            Console.WriteLine(GameStrings.GetWelcome());
-            Console.WriteLine(GameStrings.GetHouse());
+            // Initialize and start the game
+            Game.Start();
 
             // Herein lies the major flow of the game:
             while (Game.GetState())
             {
-                // Instruct the user
-                //outputForInput("> ");
-                Console.Write("> ");
-
                 // Collect and filter user commands
-                string info = Console.ReadLine();
+                string info = IO.PromptAndGetInput();
 
                 if (info == "quit") Game.ExitGame();
-                else Console.WriteLine($@"You entered '{info}'.");
+                else IO.OutputNewLine($@"You entered '{info}'.");
 
                 //string[] commands = splitAndSanitizeInput(info);
                 //outputLn();
