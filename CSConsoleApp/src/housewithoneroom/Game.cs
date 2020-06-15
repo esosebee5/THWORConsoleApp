@@ -1,4 +1,5 @@
 ﻿using CSConsoleApp.src.core.models;
+using CSConsoleApp.src.core.models.rooms;
 using CSConsoleApp.src.core.services;
 using CSConsoleApp.src.titles;
 using System;
@@ -56,7 +57,7 @@ namespace CSConsoleApp.src.housewithoneroom
         #endregion
 
         //public static Player player;
-        public static int CurrentRoom
+        public static IRoom CurrentRoom
         {
             get;
             set;
