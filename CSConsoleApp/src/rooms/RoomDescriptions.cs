@@ -145,13 +145,13 @@ namespace CSConsoleApp.src.rooms
         /*****************
          *    LIBRARY    *
          *****************/
-        public const string library = "" +
+        public const string Library = "" +
             "You are in a large room, surrounded by a labyrinth of " +
             "tall bookshelves made of a magnificent dark wood. " +
             "Golden autumnal light floods the place from high " +
             "windows somewhere outside of your field of vision." +
             "\nStraight ahead in the distance, you see a wooden door.";
-        public const string libraryFirstSearch = "" +
+        public const string LibraryFirstSearch = "" +
             "You wander about the room for a minute, glancing at " +
             "the titles of the old, worn books. Lying about on the " +
             "shelves and between the novels, you see ";

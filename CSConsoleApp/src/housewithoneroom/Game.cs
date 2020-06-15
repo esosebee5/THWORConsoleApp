@@ -1,4 +1,7 @@
 ﻿using CSConsoleApp.src.core.models;
+using CSConsoleApp.src.core.models.rooms;
+using CSConsoleApp.src.core.services;
+using CSConsoleApp.src.titles;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -54,7 +57,11 @@ namespace CSConsoleApp.src.housewithoneroom
         #endregion
 
         //public static Player player;
-        //public static iRoom currentRoom;
+        public static IRoom CurrentRoom
+        {
+            get;
+            set;
+        }
         //public static House house = new House();
         //public static LinkedList<iRoom> visitedRooms = new LinkedList<>();
         public int numberOfVisitedRooms = 0;
@@ -63,7 +70,7 @@ namespace CSConsoleApp.src.housewithoneroom
         /// <summary>
         /// Initializes a new blank game with default settings
         /// </summary>
-        public static void NewGame()
+        private static void NewGame()
         {
             state = true;
 
@@ -85,6 +92,22 @@ namespace CSConsoleApp.src.housewithoneroom
             //currentRoom = house.getCorridor().get(roomId);
         }
 
+        public static void Start(bool isNew = true)
+        {
+            // Reset properties if this is a new game
+            if (isNew == true) NewGame();
+
+            // Start game process
+            GreetPlayer();
+        }
+
+        public static void GreetPlayer()
+        {
+            // Greet Player
+            IO.OutputNewLine(GameStrings.GetWelcome());
+            IO.OutputNewLine(GameStrings.GetHouse());
+        }
+
         /// <summary>
         /// Returns the boolean state of the game
         /// </summary>
@@ -99,18 +122,18 @@ namespace CSConsoleApp.src.housewithoneroom
         /// </summary>
         public static void ExitGame()
         {
-            Console.Write("Are you sure you want to exit? [y/n] ");
-            if (Console.ReadLine() == "y")
+            IO.OutputSameLine("Are you sure you want to exit? [y/n] ");
+            if (IO.GetInput() == "y")
             {
                 state = false;
-                Console.WriteLine("Ending Game.");
-                //outputLn();
-                //output(GameStrings.getEOGUser());
+                IO.OutputNewLine();
+                IO.OutputNewLine(GameStrings.EOGUser);
             }
             else
             {
-                //outputLn();
-                Console.WriteLine("Good.");
+                IO.OutputNewLine();
+
+                IO.OutputNewLine("Good.");
             }
         }
 
@@ -118,11 +141,10 @@ namespace CSConsoleApp.src.housewithoneroom
         /// Generates an end-game sequence for a win???
         /// </summary>
         /// <returns></returns>
-        public static int EndGame()
+        public static void EndGame(bool win = false)
         {
             state = false;
-            //output(GameStrings.endGameWin);
-            return -99; //why?
+            if (win == true) IO.OutputNewLine(GameStrings.EndGameWin);
         }
     }
 }

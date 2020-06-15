@@ -237,12 +237,10 @@ namespace CSConsoleApp.src.titles
         //        public static final String GoInvalidDirection = "You cannot move in that direction from here.";
         //        public static final String DoorIsLocked = "The door is locked.";
 
-        //        public static String GetEOGUser()
-        //        {
-        //            return "You have ended the game.\n"
-        //                    + "Come back soon! \n"
-        //                    + "The House is waiting.";
-        //        }
+        public const string EOGUser = ""
+            + "You have ended the game.\n"
+            + "Come back soon! \n"
+            + "The House is waiting.";
 
         public const string HelpDialogue = "" +
             "Example Commands: \n" +
