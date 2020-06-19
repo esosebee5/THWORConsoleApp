@@ -1,9 +1,11 @@
 ﻿using CSConsoleApp.src.core.models;
 using CSConsoleApp.src.core.models.rooms;
 using CSConsoleApp.src.core.services;
+using CSConsoleApp.src.rooms;
 using CSConsoleApp.src.titles;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CSConsoleApp.src.housewithoneroom
@@ -62,8 +64,17 @@ namespace CSConsoleApp.src.housewithoneroom
             get;
             set;
         }
-        //public static House house = new House();
-        //public static LinkedList<iRoom> visitedRooms = new LinkedList<>();
+
+        public static House House
+        {
+            get;
+            set;
+        }
+
+        public static List<IRoom> visitedRooms = new List<IRoom>();
+        /// <summary>
+        /// this should be unnecessary (just take a count of the visitedRooms list)
+        /// </summary>
         public int numberOfVisitedRooms = 0;
         private static bool state;
 
@@ -74,9 +85,11 @@ namespace CSConsoleApp.src.housewithoneroom
         {
             state = true;
 
-            // TODO: implement
-            //house = new House();
-            //currentRoom = house.getCorridor().getFirst();
+            House = new House();
+            CurrentRoom = House.GetFirstRoom();
+            
+            // Verify...
+            IO.OutputNewLine($"Current Room: {CurrentRoom.GetName()}");
         }
 
         /// <summary>
