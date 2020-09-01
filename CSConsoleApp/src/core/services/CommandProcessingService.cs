@@ -1,7 +1,7 @@
-﻿using CSConsoleApp.src.housewithoneroom;
-using CSConsoleApp.src.titles;
+﻿using THWOR.src.housewithoneroom;
+using THWOR.src.titles;
 
-namespace CSConsoleApp.src.core.services
+namespace THWOR.src.core.services
 {
     class CommandProcessingService
     {

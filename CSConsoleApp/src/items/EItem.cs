@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSConsoleApp.src.items
+namespace THWOR.src.items
 {
     enum EItem
     {

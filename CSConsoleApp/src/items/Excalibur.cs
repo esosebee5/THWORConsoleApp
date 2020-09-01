@@ -1,6 +1,6 @@
-﻿using CSConsoleApp.src.items.itemBase;
+﻿using THWOR.src.items.itemBase;
 
-namespace CSConsoleApp.src.items
+namespace THWOR.src.items
 {
     class Excalibur : WeaponBase
     {

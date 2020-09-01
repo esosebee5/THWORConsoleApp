@@ -1,7 +1,7 @@
-﻿using CSConsoleApp.src.items.itemBase;
-using CSConsoleApp.src.rooms;
+﻿using THWOR.src.items.itemBase;
+using THWOR.src.rooms;
 
-namespace CSConsoleApp.src.items
+namespace THWOR.src.items
 {
     class HallKey : KeyBase
     {

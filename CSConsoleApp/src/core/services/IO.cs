@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSConsoleApp.src.core.services
+namespace THWOR.src.core.services
 {
     /// <summary>
     /// Handles input and output for the application

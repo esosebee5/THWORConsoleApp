@@ -1,11 +1,11 @@
-﻿using CSConsoleApp.src.adventures;
-using CSConsoleApp.src.core.services;
-using CSConsoleApp.src.housewithoneroom;
-using CSConsoleApp.src.items;
-using CSConsoleApp.src.rooms;
-using CSConsoleApp.src.titles;
+﻿using THWOR.src.adventures;
+using THWOR.src.core.services;
+using THWOR.src.housewithoneroom;
+using THWOR.src.items;
+using THWOR.src.rooms;
+using THWOR.src.titles;
 
-namespace CSConsoleApp.src.core.models.rooms
+namespace THWOR.src.core.models.rooms
 {
     class Library : RoomBase
     {

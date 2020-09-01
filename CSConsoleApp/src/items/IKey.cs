@@ -1,6 +1,6 @@
-﻿using CSConsoleApp.src.rooms;
+﻿using THWOR.src.rooms;
 
-namespace CSConsoleApp.src.items
+namespace THWOR.src.items
 {
     interface IKey
     {

@@ -1,7 +1,7 @@
-﻿using CSConsoleApp.src.core.services;
-using CSConsoleApp.src.titles;
+﻿using THWOR.src.core.services;
+using THWOR.src.titles;
 
-namespace CSConsoleApp.src.adventures
+namespace THWOR.src.adventures
 {
     class LibraryBookshelfAdventure
     {

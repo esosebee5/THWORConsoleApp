@@ -1,4 +1,4 @@
-﻿namespace CSConsoleApp.src.housewithoneroom
+﻿namespace THWOR.src.housewithoneroom
 {
     class Start
     {

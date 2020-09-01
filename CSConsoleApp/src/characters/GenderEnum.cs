@@ -1,4 +1,4 @@
-﻿namespace CSConsoleApp.src.characters
+﻿namespace THWOR.src.characters
 {
     public enum Gender
     {

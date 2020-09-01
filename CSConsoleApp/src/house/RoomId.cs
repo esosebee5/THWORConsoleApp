@@ -1,4 +1,4 @@
-﻿namespace CSConsoleApp.src.rooms
+﻿namespace THWOR.src.rooms
 {
     enum RoomId
     {

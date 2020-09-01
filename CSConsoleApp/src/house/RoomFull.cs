@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSConsoleApp.src.rooms
+namespace THWOR.src.rooms
 {
     class RoomFull
     {

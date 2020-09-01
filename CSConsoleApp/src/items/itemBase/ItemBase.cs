@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace CSConsoleApp.src.items
+namespace THWOR.src.items
 {
     abstract class ItemBase : IItem
     {

@@ -1,12 +1,12 @@
-﻿using CSConsoleApp.src.characters;
-using CSConsoleApp.src.core.models.rooms;
-using CSConsoleApp.src.core.services;
-using CSConsoleApp.src.items;
-using CSConsoleApp.src.rooms;
-using CSConsoleApp.src.titles;
+﻿using THWOR.src.characters;
+using THWOR.src.core.models.rooms;
+using THWOR.src.core.services;
+using THWOR.src.items;
+using THWOR.src.rooms;
+using THWOR.src.titles;
 using System.Collections.Generic;
 
-namespace CSConsoleApp.src.housewithoneroom
+namespace THWOR.src.housewithoneroom
 {
     class Game
     {

@@ -1,4 +1,4 @@
-﻿namespace CSConsoleApp.src.items.itemBase
+﻿namespace THWOR.src.items.itemBase
 {
     abstract class WeaponBase : ItemBase, IWeapon
     {
