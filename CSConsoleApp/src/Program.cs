@@ -1,13 +1,11 @@
 ﻿using CSConsoleApp.src.core.services;
 using CSConsoleApp.src.housewithoneroom;
-using CSConsoleApp.src.titles;
-using System;
 
 namespace CSConsoleApp
 {
     class Program
     {
-        static int Main()
+        static void Main()
         {
             // Initialize and start the game
             Game.Start();
@@ -18,18 +16,18 @@ namespace CSConsoleApp
                 // Collect and filter user commands
                 string info = IO.PromptAndGetInput();
 
-                if (info == "quit") Game.ExitGame();
-                else IO.OutputNewLine($@"You entered '{info}'.");
+                // Empty line buffer after getting input
+                IO.OutputNewLine();
 
-                //string[] commands = splitAndSanitizeInput(info);
-                //outputLn();
+                // Process user commands
+                string[] commands = IO.SplitAndSanitizeInput(info);
+                CommandProcessingService.ParseInput(commands);
 
-                //// Process user commands
-                //parseInput(commands);
-                //outputLn();
+                // Empty line buffer before getting next input
+                IO.OutputNewLine();
             }
 
-            return 0;
+            IO.GetInput();
         }
     }
 }

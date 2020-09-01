@@ -1,10 +1,10 @@
-﻿using CSConsoleApp.src.core.models;
+﻿using CSConsoleApp.src.characters;
 using CSConsoleApp.src.core.models.rooms;
 using CSConsoleApp.src.core.services;
+using CSConsoleApp.src.items;
+using CSConsoleApp.src.rooms;
 using CSConsoleApp.src.titles;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CSConsoleApp.src.housewithoneroom
 {
@@ -56,28 +56,30 @@ namespace CSConsoleApp.src.housewithoneroom
 
         #endregion
 
-        //public static Player player;
-        public static IRoom CurrentRoom
+        #region Properties
+
+        public static bool admin = false;
+        //public static bool admin = true;
+
+        public static Player Player;
+        private static IRoom CurrentRoom
         {
             get;
             set;
         }
-        //public static House house = new House();
-        //public static LinkedList<iRoom> visitedRooms = new LinkedList<>();
-        public int numberOfVisitedRooms = 0;
+
+        public static House House
+        {
+            get;
+            set;
+        }
+
+        private static List<IRoom> VisitedRooms = new List<IRoom>();
         private static bool state;
 
-        /// <summary>
-        /// Initializes a new blank game with default settings
-        /// </summary>
-        private static void NewGame()
-        {
-            state = true;
+        #endregion
 
-            // TODO: implement
-            //house = new House();
-            //currentRoom = house.getCorridor().getFirst();
-        }
+        #region Constructor
 
         /// <summary>
         /// Initializes a new blank game starting in the specified room
@@ -92,20 +94,97 @@ namespace CSConsoleApp.src.housewithoneroom
             //currentRoom = house.getCorridor().get(roomId);
         }
 
+        #endregion
+
+        /// <summary>
+        /// Initializes a new blank game with default settings
+        /// </summary>
+        private static void NewGame()
+        {
+            // Set the "running" state
+            state = true;
+
+            // Generate the House
+            House = new House();
+
+            // Initialize Player
+            InitializePlayer();
+
+            if (admin)
+            {
+                IO.OutputSameLine("Enter starting room id: ");
+                string roomIdString = IO.GetInput();
+                IO.OutputNewLine();
+                if (int.TryParse(roomIdString, out int roomIdInt))
+                {
+                    var roomId = (RoomId)roomIdInt;
+                    MoveToRoom(roomId);
+                    IO.OutputNewLine();
+                }
+            }
+            else
+            {
+                // Set the Player's position within the House
+                MoveToRoom(House.GetFirstRoom().GetId());
+                IO.OutputNewLine();
+                //CurrentRoom = House.GetFirstRoom();
+                //VisitedRooms.Add(CurrentRoom);
+            }
+        }
+
         public static void Start(bool isNew = true)
         {
+            // Start game process
+            GreetUser();
+
             // Reset properties if this is a new game
             if (isNew == true) NewGame();
 
-            // Start game process
-            GreetPlayer();
+            //// Show the player where they are:
+            //DisplayCurrentRoomDescription();
+
+            // TODO:
+            // -
         }
 
-        public static void GreetPlayer()
+        /// <summary>
+        /// Gets input from the user to create the Player
+        /// </summary>
+        private static void InitializePlayer()
+        {
+            //in order to make startup easier for myself:
+            if (admin)
+            {
+                Player = new Player("CoconutCavalry", "male");
+                IO.OutputNewLine("Welcome, " + Player.GetName() + ".\n");
+            }
+            else
+            {
+                IO.OutputSameLine("Enter name: ");
+                string name = IO.GetInput();
+                IO.OutputSameLine("Male or female? ");
+                string gender = IO.GetInput();
+                Player = new Player(name, gender);
+                IO.OutputNewLine("\nWelcome, " + Player.GetName() + ".\n");
+                //IO.OutputNewLine("\nWelcome, " + Player.getPronouns()[0] + " " + Player.GetName() + ".\n");
+            }
+
+            IO.OutputNewLine(Player.ShowCharacterReport());
+            IO.OutputNewLine();
+
+
+            //    // Show starting stats
+            //    output(Game.player.showCharacterReport());
+            //    outputLn();
+        }
+
+        private static void GreetUser()
         {
             // Greet Player
             IO.OutputNewLine(GameStrings.GetWelcome());
+            IO.OutputNewLine();
             IO.OutputNewLine(GameStrings.GetHouse());
+            IO.OutputNewLine();
         }
 
         /// <summary>
@@ -116,6 +195,8 @@ namespace CSConsoleApp.src.housewithoneroom
         {
             return state;
         }
+
+        #region Exit Game methods
 
         /// <summary>
         /// Initiates the "Would you like to end the game?" sequence
@@ -141,10 +222,176 @@ namespace CSConsoleApp.src.housewithoneroom
         /// Generates an end-game sequence for a win???
         /// </summary>
         /// <returns></returns>
-        public static void EndGame(bool win = false)
+        public static string EndGame(bool win = false)
         {
             state = false;
-            if (win == true) IO.OutputNewLine(GameStrings.EndGameWin);
+            // TODO: implement "false" param...
+            //if (win == true) IO.OutputNewLine(GameStrings.EndGameWin);
+            return GameStrings.EndGameWin;
         }
+
+        #endregion
+
+        #region Navigation
+
+        /// <summary>
+        /// Initiates movememnt from one room to another, if possible.
+        /// </summary>
+        /// <param name="direction"></param>
+        public static void TryGoing(string direction)
+        {
+            // TODO: implement Monster/CanLeave stuff
+            //if (CurrentRoom.GetMonster() != null)
+            //{
+            //    SimpleMonster monster = CurrentRoom.GetMonster();
+            //    if (!monster.isDead())
+            //    {
+            //        output("The " + monster.getName() + " blocks your path.\n" +
+            //                "You cannot leave while the " + monster.getName() + " is alive.");
+            //        return;
+            //    }
+            //}
+            RoomId roomId = CurrentRoom.Go(direction);
+            if (roomId > RoomId.NoRoom)
+            {
+                MoveToRoom(roomId);
+            }
+            else
+            {
+                switch (roomId)
+                {
+                    case RoomId.EndGame:
+                        IO.OutputNewLine(EndGame(true));
+                        break;
+                    case RoomId.NoRoom:
+                        IO.OutputNewLine(GameStrings.GoInvalidDirection);
+                        break;
+                    case RoomId.RoomIsLocked:
+                        IO.OutputNewLine(GameStrings.DoorIsLocked);
+                        break;
+                }
+            }
+
+
+
+            // Commenting out the below block (don't think it's necessary)
+            //else if (roomId == -99)
+            //{
+            //    // roomId -99 is endGameWin
+            //    // Do nothing; necessary actions have already taken place.
+            //    // Here, it just needs to fall through back to the main loop so that it can exit.
+            //}
+        }
+
+        /// <summary>
+        /// Handles the logic around updating the CurrentRoom
+        /// </summary>
+        /// <param name="roomId"></param>
+        public static void MoveToRoom(RoomId roomId)
+        {
+            var newRoom = House.GetRoomById(roomId);
+            if (newRoom != null)
+            {
+                CurrentRoom = newRoom;
+                if (VisitedRooms.Contains(CurrentRoom))
+                {
+                    IO.OutputNewLine("You are now in the "
+                            + CurrentRoom.GetName() + ".");
+                }
+                else
+                {
+                    VisitedRooms.Add(CurrentRoom);
+                    DisplayCurrentRoomDescription();
+                }
+            }
+            else
+            {
+                // This should only be useful for debugging... should not happen during a normal game.
+                IO.OutputNewLine("That room does not exist");
+            }
+        }
+
+        // method to show current room description
+        //....
+        public static void DisplayCurrentRoomDescription()
+        {
+            IO.OutputNewLine(CurrentRoom.GetDescription());
+        }
+
+        #endregion
+
+        #region Command Service Methods
+
+        /// <summary>
+        /// Passes the user input array and the current player into the room
+        /// to perform room-specific actions
+        /// </summary>
+        /// <param name="inputs"></param>
+        public static void PassCommandsToCurrentRoom(string[] inputs)
+        {
+            CurrentRoom.PerformCustomMethods(inputs);
+        }
+
+        public static void TryTakingItem(string itemName)
+        {
+            List<IItem> itemsInRoom = CurrentRoom.GetItems();
+            if (itemsInRoom == null)
+            {
+                IO.OutputNewLine(GameStrings.NoItemsSeen);
+            }
+            else
+            {
+                foreach (IItem item in itemsInRoom)
+                {
+                    if (item.GetName() == itemName)
+                    {
+
+                        // remove the item from the room if taken by player
+                        if (Player.TakeItem(item))
+                        {
+                            CurrentRoom.RemoveItem(item);
+                            return;
+                        }
+                        return;
+                    }
+                }
+            }
+            IO.OutputNewLine(GameStrings.NoItemAvailable);
+        }
+
+        public static void TryDroppingItem(string itemName)
+        {
+            // try to drop from inventory
+            IItem droppedItem = Player.Drop(itemName);
+            if (droppedItem != null)
+            {
+                // print result of action
+                IO.OutputNewLine("You dropped the " + itemName + ".");
+
+                // then add back to current room
+                CurrentRoom.AddItem(droppedItem);
+            }
+            else
+            {
+                IO.OutputNewLine(GameStrings.NotInInventory);
+            }
+        }
+
+        public static void TryEquippingItem(string itemName)
+        {
+            IO.OutputNewLine(Player.Equip(itemName));
+        }
+
+        public static void TryPocketingItem(string itemName)
+        {
+            IO.OutputNewLine(Player.Pocket(itemName));
+        }
+
+        public static void TryViewingItem(string itemName)
+        {
+            IO.OutputNewLine(Player.View(itemName));
+        }
+
+        #endregion
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CSConsoleApp.src.titles
+﻿namespace CSConsoleApp.src.titles
 {
     class GameStrings
     {
@@ -225,17 +221,21 @@ namespace CSConsoleApp.src.titles
             return House2;
         }
 
-
         /**********************
          * Hard-coded strings *
          **********************/
-        //        public static final String NotInInventory = ""
-        //            + "No item of that name is currently in your inventory.";
-        //        public static final String InvalidNoun = "Invalid noun.";
-        //        public static final String PerformCustomMethodsBadInput = "bad input; try again or use 'help' for help.";
-        //        public static final String NothingToAttackHereString = "There is nothing to attack here.";
-        //        public static final String GoInvalidDirection = "You cannot move in that direction from here.";
-        //        public static final String DoorIsLocked = "The door is locked.";
+        public const string NoItemsInRoom = "There are no items to be found here.";
+        public const string NoItemsSeen = "You don't see any items.";
+        public const string NoItemAvailable = "No item of that name is available.";
+        public const string NotInInventory = "No item of that name is currently in your inventory.";
+        public const string NotEquipped = "You do not have that item equipped.";
+        public const string InvalidNoun = "Invalid noun.";
+        public const string BadInput = "Bad input; try again.";
+        public const string PerformCustomMethodsBadInput = "Bad input; try again or use 'help' for help.";
+        public const string NothingToAttackHereString = "There is nothing to attack here.";
+        public const string GoInvalidDirection = "You cannot move in that direction from here.";
+        public const string DoorIsLocked = "The door is locked.";
+        public const string CorrectKeyNotEquipped = "You do not have the right key equipped.";
 
         public const string EOGUser = ""
             + "You have ended the game.\n"
@@ -259,13 +259,13 @@ namespace CSConsoleApp.src.titles
             "'take [item]' - pick up an item that you find in your room\n" +
             "'unlock' - unlocks a locked door, if the necessary key is equipped " +
             "(example usage: 'unlock left door')\n" +
-            "'view [item]' - get details on the specified item, if it is in your current inventory";
+            "'view [item]' - get details on the specified item, if it is currently equipped";
 
         public const string EndGameWin = "" +
             "You open the door and step out into brilliant sunlight.\n" +
             "Congratulations! You have beaten the house!";
 
-//    //    public static final String NoStatsAvailable = "" +
+//    //    public static final string NoStatsAvailable = "" +
 //    //            "There are no available stats for this item.";
     }
 }

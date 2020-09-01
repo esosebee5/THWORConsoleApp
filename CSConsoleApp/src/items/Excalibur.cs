@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CSConsoleApp.src.items.itemBase;
 
 namespace CSConsoleApp.src.items
 {
-    class Excalibur
+    class Excalibur : WeaponBase
     {
         #region Java Code
 
@@ -68,5 +66,24 @@ namespace CSConsoleApp.src.items
         ////    }
 
         #endregion
+
+        public Excalibur(
+            string name = "sword",
+            string description = "The sword has strange runes carved into the blade and a dark jewel set into the pommel.",
+            int size = 0,
+            int damage = 20,
+            string damageType = "blade",
+            string attackVerb = "slash")
+            : base(name, description, size, damage, damageType, attackVerb)
+        { }
+
+        // TODO: can this be implemented at all? an overload, maybe?
+        ////    public String getAttackVerb() {
+        ////        this.numAttacks++;
+        ////        if (this.numAttacks % 3 == 0) {
+        ////            return "stab";
+        ////        }
+        ////        return "slash";
+        ////    }
     }
 }

@@ -1,11 +1,13 @@
-﻿using CSConsoleApp.src.rooms;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CSConsoleApp.src.adventures;
+using CSConsoleApp.src.core.services;
+using CSConsoleApp.src.housewithoneroom;
+using CSConsoleApp.src.items;
+using CSConsoleApp.src.rooms;
+using CSConsoleApp.src.titles;
 
 namespace CSConsoleApp.src.core.models.rooms
 {
-    class Library : IRoom
+    class Library : RoomBase
     {
         #region Java code
 
@@ -15,7 +17,6 @@ namespace CSConsoleApp.src.core.models.rooms
 
         //    private static final int id = RoomId.LIBRARY.getId();
         //    private static final String name = "Library";
-        //private final int neighbor = RoomId.STUDY.getId();
         //    private SimpleMonster monster;
         //    private final String description = RoomDescriptions.library;
         //private final String firstSearchDescription =
@@ -121,23 +122,6 @@ namespace CSConsoleApp.src.core.models.rooms
         //        }
         //    }
 
-        //    /*****************
-        //     *    MOVEMENT   *
-        //     *****************/
-        //    public int go(String direction)
-        //    {
-        //        switch (direction)
-        //        {
-        //            case "ahead":
-        //            case "forward":
-        //            case "forwards":
-        //            case "straight":
-        //                return this.neighbor;
-        //            default:
-        //                return -1;
-        //        }
-        //    }
-
         //    /******************
         //     *    Attacking   *
         //     ******************/
@@ -172,122 +156,30 @@ namespace CSConsoleApp.src.core.models.rooms
          * PROPERTIES *
          **************/
 
-        private bool HasBeenSearched = false;
-        private List<int> Items;
+        private readonly RoomId[] Neighbors = {
+            RoomId.Study
+        };
 
         #endregion
 
         /***************
          * CONSTRUCTOR *
          ***************/
-        public Library()
+        public Library(
+            RoomId id = RoomId.Library,
+            string name = RoomDescriptions.LibraryName,
+            string description = RoomDescriptions.Library,
+            string firstSearchDescription = RoomDescriptions.LibraryFirstSearch,
+            bool hasBeenSearched = false)
+            : base(id, name, description, firstSearchDescription, hasBeenSearched)
         {
-            Items = new List<int>();
-            Items.Add(1);
-            Items.Add(2);
-        }
-
-        #region Room Info
-
-        /********
-         * INFO *
-         ********/
-
-        public RoomId GetId()
-        {
-            return RoomId.Library;
-        }
-
-        public string GetName()
-        {
-            return "Library";
-        }
-
-        public string GetDescription()
-        {
-            return RoomDescriptions.Library;
-        }
-
-        #endregion
-
-        #region Inventory Methods
-
-        /*************
-         * INVENTORY * 
-         *************/
-
-        public List<int> GetItems()
-        {
-            // TODO: refactor this to be smooth
-            // TODO: refactor this to use items
-            List<int> copy = new List<int>();
-            foreach (int item in Items)
+            AddItem(new Knife());
+            AddItem(new Flashlight());
+            if (Game.admin == true)
             {
-                copy.Add(item);
+                AddItem(new Excalibur());
             }
-            return copy;
         }
-
-        public bool AddItem(int item)
-        {
-            bool success = false;
-            // TODO: validate incoming item
-            if (Items == null) Items = new List<int>();
-            Items.Add(item);
-            success = true;
-            return success;
-        }
-
-        public bool RemoveItem(int item)
-        {
-            bool success = false;
-            // TODO: validate incoming item
-            // search for item to remove
-            // remove the item
-            Items.Remove(item);
-            success = true;
-            return success;
-        }
-
-        public string Search(string objectName = null)
-        {
-            string searchResults = "There are no items to be found here."; // TODO: place this in strings class?
-            if (Items != null && Items.Count > 0)
-            {
-                if (HasBeenSearched == true)
-                {
-                    searchResults = "You have already searched here, dummy."; //TODO: fix this
-                }
-                else
-                {
-                    HasBeenSearched = true;
-                    searchResults = "";
-                    foreach (int item in Items)
-                    {
-                        searchResults += item.ToString();
-                    }
-                    searchResults.Trim();
-                    searchResults += ".";
-                }
-            }
-            //        ArrayList<iItem> itemsInRoom = this.getItems();
-            //        if (itemsInRoom.isEmpty())
-            //        {
-            //            return "There are no items to be found here.";
-            //        }
-            //        if (!this.hasBeenSearched)
-            //        {
-            //            this.hasBeenSearched = true;
-            //            return Shared.appendDescriptionToItemsString(
-            //                    this.firstSearchDescription, itemsInRoom);
-            //        }
-
-            //        return Shared.appendDescriptionToItemsString(
-            //                    RoomDescriptions.defaultSearchDescription, itemsInRoom);
-            return searchResults;
-        }
-
-        #endregion
 
         #region Navigation
 
@@ -295,23 +187,86 @@ namespace CSConsoleApp.src.core.models.rooms
          * NAVIGATION *
          **************/
 
-        public bool CanLeave()
+        public override bool CanLeave()
         {
-            throw new NotImplementedException();
+            return true; // TODO: fill out when MONSTER is implemented
         }
 
-        public int Go(string direction)
+        public override RoomId Go(string direction)
         {
-            throw new NotImplementedException();
+            var roomId = RoomId.NoRoom;
+            switch (direction)
+            {
+                case "ahead":
+                case "forward":
+                case "forwards":
+                case "straight":
+                    roomId = Neighbors[0];
+                    break;
+            }
+            return roomId;
         }
+
+        #endregion
+
+        #region Monster/Combat
+
+        ///**
+        // * If the room itself contains a monster, this returns a reference to that monster
+        // * Used to decide if the player is able to leave a room
+        // * @return reference to the monster contained by the room
+        // */
+        //SimpleMonster getMonster();
+
+        // TODO: probably shouldn't be void...?
+        //public void Attack()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         #endregion
 
         #region CustomMethods
 
-        public void PerformCustomMethods(string[] inputs)
+        public override void PerformCustomMethods(string[] inputs)
         {
-            throw new NotImplementedException();
+            switch (inputs[0])
+            {
+                case "b":
+                case "browse":
+                    LibraryBookshelfAdventure.BrowseLibrary();
+                    break;
+                case "r":
+                case "read":
+                    // was there ever anything here?
+                    IO.OutputNewLine("'Read' not implemented.");
+                    break;
+                case "s":
+                case "search":
+                    IO.OutputNewLine(SearchBasic());
+                    break;
+                default:
+                    IO.OutputNewLine(GameStrings.PerformCustomMethodsBadInput);
+                    break;
+            }
+
+
+            //        switch (inputs[0])
+            //        {
+            //            case "b":
+            //            case "browse":
+            //                LibraryBookshelfAdventure.browseLibrary();
+            //                break;
+            //            case "r":
+            //            case "read":
+            //                break;
+            //            case "s":
+            //            case "search":
+            //                output(this.search());
+            //                break;
+            //            default:
+            //                output(GameStrings.PerformCustomMethodsBadInput);
+
         }
 
         #endregion

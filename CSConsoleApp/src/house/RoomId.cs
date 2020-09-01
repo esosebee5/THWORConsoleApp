@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CSConsoleApp.src.rooms
+﻿namespace CSConsoleApp.src.rooms
 {
     enum RoomId
     {
-        Library
-
         #region Java code
 
         //    LIBRARY(0),
@@ -30,5 +24,18 @@ namespace CSConsoleApp.src.rooms
         //}
 
         #endregion
+
+        EndGame = -7,
+        RoomIsLocked = -2,
+        NoRoom = -1,
+        Library = 0,
+        Study = 1,
+        Hall = 2,
+        DiningRoom = 3,
+        ComputerRoom = 4,
+        Kitchen = 5,
+        Pantry = 6,
+        UpstairsHallway = 7
+
     }
 }

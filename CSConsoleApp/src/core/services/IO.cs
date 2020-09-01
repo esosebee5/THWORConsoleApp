@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CSConsoleApp.src.core.services
 {
@@ -41,6 +39,18 @@ namespace CSConsoleApp.src.core.services
         {
             OutputSameLine("> ");
             return GetInput();
+        }
+
+        /// <summary>
+        /// Sanitizes input (toLowerCase) and splits it into separate words
+        /// </summary>
+        /// <param name="input">the user input that needs to be split and sanitized</param>
+        /// <returns>an array of words</returns>
+        public static string[] SplitAndSanitizeInput(string input)
+        {
+            string sanitizedInput = input.ToLower();
+            //        String[] infoArray = sanitizedInput.split("\\s+");
+            return sanitizedInput.Split(" ");
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CSConsoleApp.src.rooms
+﻿namespace CSConsoleApp.src.rooms
 {
     class RoomDescriptions
     {
@@ -140,11 +136,12 @@ namespace CSConsoleApp.src.rooms
 
         #endregion
 
-        public const string defaultSearchDescription = "You see ";
+        public const string DefaultSearchDescription = "You see ";
 
         /*****************
          *    LIBRARY    *
          *****************/
+        public const string LibraryName = "Library";
         public const string Library = "" +
             "You are in a large room, surrounded by a labyrinth of " +
             "tall bookshelves made of a magnificent dark wood. " +
@@ -155,38 +152,40 @@ namespace CSConsoleApp.src.rooms
             "You wander about the room for a minute, glancing at " +
             "the titles of the old, worn books. Lying about on the " +
             "shelves and between the novels, you see ";
-    
+
         /***************
          *    STUDY    *
          ***************/
-        public const string study = "" +
+        public const string StudyName = "Study";
+        public const string Study = "" +
             "You are in a small, dimly lit room. A high-backed " +
             "armchair sits behind a large oak desk on one side. " +
             "The other side has a fireplace, in which some struggling" +
             " embers fight to produce a meager source of heat." +
-            "\nOn your left, beside the desk, is a dark-colored door." +
+            "\nOn your left, beside the desk, is a black door." +
             "\nBehind you is the door to the library.";
-        public const string studyFirstSearch = "" +
+        public const string StudyFirstSearch = "" +
             "You see ";
-        public const string studyDeskFirstSearch = "" +
+        public const string StudyDeskFirstSearch = "" +
             "You rummage through the drawers of the large desk. In the " +
             "bottom of the last one, under an army of cobwebs, you find " +
             "an old black iron key.";
-        public const string studyDeskOtherSearch = "" +
+        public const string StudyDeskOtherSearch = "" +
             "It is a large, dusty oak desk, with many drawers.";
-        public const string studyFireplaceFirstSearch = "" +
+        public const string StudyFireplaceFirstSearch = "" +
             "You run your hands across the old stone mantlepiece, and you " +
             "feel a certain rock give way beneath your fingers. You see a " +
             "small scrap of paper flutter between your fingers towards the " +
             "burning coals. You fumble with the torn scrap for a second and " +
             "it lands on the stone hearth.";
-        public const string studyFireplaceOtherSearch = "" +
+        public const string StudyFireplaceOtherSearch = "" +
             "It is an old stone fireplace, with some coals burning on the grate.";
-    
+
         /**************
          *    HALL    *
          **************/
-        public const string hall = "" +
+        public const string HallName = "Hall";
+        public const string Hall = "" +
             "You are in a long hall lit by flickering torchlight." +
             "\nThere are stairs going upward to the railing of a second floor " +
             "above you." +
@@ -205,11 +204,12 @@ namespace CSConsoleApp.src.rooms
             "down your spine." +
             "\n'You have angered the Guardian,' it says." +
             "\n'You shall not leave.'";
-    
+
         /*********************
          *    DINING ROOM    *
          *********************/
-        public const string dining = "" +
+        public const string DiningName = "Dining Room";
+        public const string Dining = "" +
             "You are in a dim, candle-lit dining room. A table in front of you " +
             "is set for seven, but the seventh set of dishes and utensils, at " +
             "the far end of the table, is old, cracked, and covered in a thick " +
@@ -217,20 +217,19 @@ namespace CSConsoleApp.src.rooms
             "\n'Who could live here?' you ask yourself." +
             "\nThere is a swinging door in the far wall ahead of you." +
             "\nThe door to the Hall is behind you.";
-    //    public const string diningFirstSearch = "" +
-    //            "There is nothing here.";
-    
+
         /***********************
          *    COMPUTER ROOM    *
          ***********************/
-        public const string compRoom = "" +
+        public const string ComputerRoomName = "Computer Room";
+        public const string ComputerRoom = "" +
             "You are in a wide, dark room. An electronic hum comes from a wall " +
             "on your left, where hundreds of tiny lights blink blue, red, orange, " +
             "and green." +
             "\nBehind you is the door to the Hall.";
-        public const string compSearchNoLight = "" +
+        public const string CompSearchNoLight = "" +
             "There is a lightswitch on the wall beside the door.";
-        public const string compFirstSearchWithLight = "" +
+        public const string CompFirstSearchWithLight = "" +
             "The left wall of the wide room is covered by computer monitors from " +
             "floor to ceiling. The monitor screens are sectioned into grids which " +
             "are all blank, except for a few flickering lights in the corners of " +
@@ -238,17 +237,18 @@ namespace CSConsoleApp.src.rooms
             "written on it in jagged, angular handwriting with permanent marker. " +
             "Four benches, oddly similar to hospital beds, are spaced evenly across " +
             "the rest of the room." +
-            "\n" + compSearchNoLight;
-        public const string compOtherSearchWithLight = "" +
+            "\n" + CompSearchNoLight;
+        public const string CompOtherSearchWithLight = "" +
             "Computer monitors with flickering lights cover the left wall. A " +
             "sticky-note in the middle reads 'RAG??'. Four beds are spread across " +
             "the room." +
-            "\n" + compSearchNoLight;
+            "\n" + CompSearchNoLight;
 
         /*****************
          *    KITCHEN    *
          *****************/
-        public const string kitchen = "" +
+        public const string KitchenName = "Kitchen";
+        public const string Kitchen = "" +
             "You are in a large, old fashioned kitchen with a black-and-white " +
             "checkerboard floor." +
             "\nTo your right is a plain wooden door." +
@@ -257,7 +257,8 @@ namespace CSConsoleApp.src.rooms
         /****************
          *    PANTRY    *
          ****************/
-        public const string pantry = "" +
+        public const string PantryName = "Pantry";
+        public const string Pantry = "" +
             "You are in a long pantry room with floor-to-ceiling wooden shelves " +
             "running the length of the room." +
             "\nBehind you is the door to the kitchen.";
@@ -265,7 +266,8 @@ namespace CSConsoleApp.src.rooms
         /**************************
          *    UPSTAIRS HALLWAY    *
          **************************/
-        public const string upstairsHallway = "" +
+        public const string UpstairsHallwayName = "Upstairs Hallway";
+        public const string UpstairsHallway = "" +
             "You are in a long, empty hallway. To your right is a railing, beyond which " +
             "you can see the torchlit hall below." +
             "\nBehind you is the staircase leading down to the hall.";

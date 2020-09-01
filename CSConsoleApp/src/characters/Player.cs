@@ -1,6 +1,7 @@
-﻿using System;
+﻿using CSConsoleApp.src.core.services;
+using CSConsoleApp.src.items;
+using CSConsoleApp.src.titles;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CSConsoleApp.src.characters
 {
@@ -8,61 +9,13 @@ namespace CSConsoleApp.src.characters
     {
         #region Java code
 
-        //private String _name;
-        //private String _gender;
-        //private String[] pronouns;
-        //private String[] male = { "Mister", "He", "His", "His" };
-        //private String[] female = { "Miss", "She", "Her", "Hers" };
-        //private int _health;
-        //private ArrayList<iItem> _inventory;
-        //private iItem lHand = null;
-        //private iItem rHand = null;
-        //public String death = "You are dead.";
-        //private boolean dead;
-
-        //private Boolean limitedInventory = false;
-        ///**
-        // * Not dealing with inventory space atm.
-        // * Bottomless. Congrats.
-        // */
-        //private iItem[] pockets = new iItem[4];
-        //private int _backpackSpaceAvailable = 0;
-        ////this size is relative, not universal.
-        //private double _inventorySize;
-        //private double _remainingInventorySpace;
-
-
-        //public Player(String name, int health, String death)
-        //{
-        //    this._name = name;
-        //    this._health = health;
-        //    this.death = death;
-        //    this.dead = false;
-        //}
-
-        //public Player(String name, String gender)
-        //{
-        //    this._name = name;
-        //    this._inventory = new ArrayList<>();
-        //    this.setGender(gender);
-        //    this._health = 100;
-        //    this.dead = false;
-        //    if (limitedInventory)
-        //    {
-        //        this._inventorySize = this.getPocketSpaceRemaining()
-        //                       + this._backpackSpaceAvailable;
-        //        this._remainingInventorySpace = this._inventorySize;
-        //    }
-        //}
-
-        //public String getName() { return this._name; }
-        //public void setName(String name) { this._name = name; }
-        //public String getGender() { return this._gender; }
-        //public String[] getPronouns()
+        //public void setName(string name) { this._name = name; }
+        //public string getGender() { return this._gender; }
+        //public string[] getPronouns()
         //{
         //    return this.pronouns;
         //}
-        //private void setGender(String gender)
+        //private void setGender(string gender)
         //{
         //    switch (gender.toLowerCase())
         //    {
@@ -78,7 +31,7 @@ namespace CSConsoleApp.src.characters
         //}
         //public int getHealth() { return this._health; }
         //public void setHealth(int newHealth) { this._health = newHealth; }
-        //public boolean isDead()
+        //public bool isDead()
         //{
         //    return this.dead;
         //}
@@ -138,7 +91,7 @@ namespace CSConsoleApp.src.characters
         //    return space;
         //}
 
-        //public boolean takeItem(iItem item)
+        //public bool takeItem(iItem item)
         //{
         //    if (this.addItemToInventory(item))
         //    {
@@ -149,7 +102,7 @@ namespace CSConsoleApp.src.characters
         //    return false;
         //}
 
-        //private boolean addItemToInventory(iItem item)
+        //private bool addItemToInventory(iItem item)
         //{
         //    if (this._inventory == null)
         //    {
@@ -178,7 +131,7 @@ namespace CSConsoleApp.src.characters
         //    return false;
         //}
 
-        //private boolean removeItemFromInventory(iItem item)
+        //private bool removeItemFromInventory(iItem item)
         //{
         //    if (this.getInventory().contains(item))
         //    {
@@ -209,7 +162,7 @@ namespace CSConsoleApp.src.characters
         //    this._inventory = items;
         //}
 
-        //public String showInventory()
+        //public string showInventory()
         //{
         //    if (this._inventory == null)
         //    {
@@ -219,7 +172,7 @@ namespace CSConsoleApp.src.characters
         //    {
         //        return "You have no items in your inventory.";
         //    }
-        //    String inventory = "Player inventory:\n" + Shared.convertItemsInListToString(this._inventory);
+        //    string inventory = "Player inventory:\n" + Shared.convertItemsInListToString(this._inventory);
         //    if (limitedInventory)
         //    {
         //        inventory += "\nRemaining space: " + Double.toString(this._remainingInventorySpace);
@@ -227,7 +180,7 @@ namespace CSConsoleApp.src.characters
         //    return inventory;
         //}
 
-        //public iItem dropItem(String itemName)
+        //public iItem dropItem(string itemName)
         //{
         //    if (this.getInventory() == null || this.getInventory().isEmpty())
         //    {
@@ -244,7 +197,7 @@ namespace CSConsoleApp.src.characters
         //    return null;
         //}
 
-        //public String equip(iItem item)
+        //public string equip(iItem item)
         //{
         //    if (this.getRHand() == null)
         //    {
@@ -264,7 +217,7 @@ namespace CSConsoleApp.src.characters
         //    }
         //}
 
-        //public boolean pocket(String itemName)
+        //public bool pocket(string itemName)
         //{
         //    if ((this.getRHand() != null) && (this.getRHand().getName().equals(itemName)))
         //    {
@@ -318,9 +271,9 @@ namespace CSConsoleApp.src.characters
 
 
 
-        //public String showStats()
+        //public string showStats()
         //{
-        //    String stats = "Name: " + this._name + "\n" +
+        //    string stats = "Name: " + this._name + "\n" +
         //            "Gender: " + this._gender + "\n" +
         //            "Health: " + this._health;
         //    if (limitedInventory)
@@ -330,9 +283,9 @@ namespace CSConsoleApp.src.characters
         //    return stats;
         //}
 
-        //public String showCharacterReport()
+        //public string showCharacterReport()
         //{
-        //    String report = "Character report for " + this._name + ":\n"
+        //    string report = "Character report for " + this._name + ":\n"
         //            + "Gender: " + this._gender + "\n"
         //            + "Health: " + this._health + "\n"
         //            + inHandToString();
@@ -353,9 +306,9 @@ namespace CSConsoleApp.src.characters
 
 
 
-        //private String inHandToString()
+        //private string inHandToString()
         //{
-        //    String retVal = "Empty hands: " + this.getNumberOfEmptyHands() + "\n";
+        //    string retVal = "Empty hands: " + this.getNumberOfEmptyHands() + "\n";
         //    iItem lHandItem = this.getLHand();
         //    if (lHandItem != null)
         //    {
@@ -370,5 +323,406 @@ namespace CSConsoleApp.src.characters
         //}
 
         #endregion
+
+        #region Properties
+
+        private string _name;
+        public string GetName() { return _name; }
+        private Gender _gender;
+        //private string[] pronouns;
+        //private string[] male = { "Mister", "He", "His", "His" };// TODO: move to GameStrings
+        //private string[] female = { "Miss", "She", "Her", "Hers" };// TODO: move to GameStrings
+        private int _health;
+        private List<IItem> _inventory;
+        private IItem lHand = null;
+        private IItem rHand = null;
+        public string death = "You are dead."; // TODO: rename "DeathMessage" & store in GameStrings?
+        private bool dead;
+
+        //private bool limitedInventory = false;
+        /**
+         * Not dealing with inventory space atm.
+         * Bottomless. Congrats.
+         */
+        //private iItem[] pockets = new iItem[4];
+        private int _backpackSpaceAvailable = 0;
+        //this size is relative, not universal.
+        private int _inventorySize;
+        //private int _remainingInventorySpace;
+
+        #endregion
+
+        /// <summary>
+        /// Constructor (testing/admin constructor; all params)
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="genderString"></param>
+        /// <param name="health"></param>
+        /// <param name="deathMessage"></param>
+        public Player(string name, string genderString, int health, string deathMessage)
+        {
+            _name = name;
+            SetGender(genderString);
+            _health = health;
+            death = deathMessage;
+            dead = false;
+        }
+
+        /// <summary>
+        /// Constructor (main constructor - minimum params)
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="genderString"></param>
+        public Player(string name, string genderString)
+        {
+            _name = name;
+            SetGender(genderString);
+            _health = 100; // TODO: set up min health int value somewhere
+            // TODO: set up default death message somewhere
+
+            dead = false;
+            _inventory = new List<IItem>();
+            //if (limitedInventory)
+            //{
+            //    _inventorySize = getPocketSpaceRemaining() + _backpackSpaceAvailable;
+            //    _remainingInventorySpace = _inventorySize;
+            //}
+        }
+
+        /// <summary>
+        /// Selects the correct Gender enum based on the input string
+        /// </summary>
+        /// <param name="gender"></param>
+        private void SetGender(string gender)
+        {
+            switch (gender.ToLower())
+            {
+                case "female":
+                case "f":
+                    _gender = Gender.Female;
+                    //pronouns = female;
+                    break;
+                default:
+                    _gender = Gender.Male;
+                    //pronouns = male;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Displays full character report
+        /// </summary>
+        /// <returns></returns>
+        public string ShowCharacterReport()
+        {
+            string report = "Character report for " + this._name + ":\n"
+                    + "Gender: " + this._gender + "\n"
+                    + "Health: " + this._health + "\n"
+                    + InHandToString();
+            //if (limitedInventory)
+            //{
+            //    report += "Inventory size: " + this._inventorySize + "\n";
+            //    //report += "Pocket space: " + this.getPocketSpaceRemaining() + "\n"
+            //    //        + "Inventory size: " + this._inventorySize + "\n";
+            //}
+            ////report += this.showInventory();
+            return report;
+        }
+
+        /// <summary>
+        /// Displays simplified character report
+        /// </summary>
+        /// <returns></returns>
+        public string ShowStats()
+        {
+            string stats = "Name: " + _name + "\n" +
+                    "Gender: " + _gender + "\n" +
+                    "Health: " + _health;
+            //if (limitedInventory)
+            //{
+            //    stats += "\nInventory: " + _inventorySize;
+            //}
+            return stats;
+        }
+
+        #region Inventory
+
+        public bool TakeItem(IItem item)
+        {
+            if (this.AddItemToInventory(item))
+            {
+                IO.OutputNewLine("You take the " + item.GetName() + ".");
+                return true;
+            }
+            IO.OutputNewLine("You don't have enough space in your inventory for that item.");
+            return false;
+        }
+
+        private bool AddItemToInventory(IItem item)
+        {
+            if (_inventory == null)
+            {
+                _inventory = new List<IItem>();
+            }
+            //if (limitedInventory)
+            //{
+            //    if (item.GetSize() <= _remainingInventorySpace)
+            //    {
+            //        _inventory.Add(item);
+            //        _remainingInventorySpace -= item.GetSize();
+            //        return true;
+            //    }
+            //}
+            //else
+            //{
+                _inventory.Add(item);
+                return true;
+            //}
+            //return false;
+        }
+
+        private bool RemoveItemFromInventory(IItem item)
+        {
+            var retVal = false;
+            if (_inventory.Contains(item))
+            {
+                _inventory.Remove(item);
+                //if (limitedInventory)
+                //{
+                //    this._remainingInventorySpace += item.getSize();
+                //}
+                retVal = true;
+            }
+            return retVal;
+        }
+
+        //public List<IItem> GetInventory()
+        //{
+        //    if (_inventory == null || _inventory.Count == 0)
+        //    {
+        //        _inventory = new List<IItem>();
+        //    }
+        //    return _inventory;
+        //}
+        public void SetInventory(List<IItem> items)
+        {
+            if (items == null)
+            {
+                _inventory = new List<IItem>();
+            }
+            _inventory = items;
+        }
+
+        public IItem Drop(string itemName)
+        {
+            if (_inventory == null || _inventory.Count == 0)
+            {
+                return null;
+            }
+            foreach (IItem item in _inventory)
+            {
+                if (item.GetName().Equals(itemName))
+                {
+                    RemoveItemFromInventory(item);
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        public string ShowInventory()
+        {
+            string inventory = "You have no items in your inventory.";
+            if (_inventory == null)
+            {
+                // This is an error state, and a confusing one
+                inventory = "Null inventory??";
+            }
+            else if (_inventory.Count > 0)
+            {
+                inventory = "Player inventory:\n" + InventoryService.ConvertItemsInListToString(_inventory);
+                //if (limitedInventory)
+                //{
+                //    inventory += "\nRemaining space: " + Double.toString(_remainingInventorySpace);
+                //}
+            }
+            return inventory;
+        }
+
+        public string Equip(string itemName)
+        {
+            string returnMessage = GameStrings.NotInInventory;
+
+            // Validate item
+            IItem item = InventoryService.SearchForItemInListByName(itemName, _inventory);
+            if (item != null)
+            {
+                returnMessage = "You do not have a free hand.";
+                bool itemEquipped = false;
+
+                // Try right hand
+                if (GetRHand() == null)
+                {
+                    SetRHand(item);
+                    itemEquipped = true;
+                    returnMessage = "You are now holding the " + item.GetName() + " in your right hand.";
+                }
+                // Try left hand
+                else if (GetLHand() == null)
+                {
+                    SetLHand(item);
+                    itemEquipped = true;
+                    returnMessage = "You are now holding the " + item.GetName() + " in your left hand.";
+                }
+                // If equip was successful, remove from inventory
+                if (itemEquipped)
+                {
+                    RemoveItemFromInventory(item);
+                }
+            }
+
+            return returnMessage;
+        }
+
+        public string Pocket(string itemName)
+        {
+            string returnMessage = GameStrings.NotEquipped;
+
+            IItem rHItem = GetRHand();
+            IItem lHItem = GetLHand();
+            if ((rHItem != null) && rHItem.GetName().ToLower().Equals(itemName))
+            {
+                if (AddItemToInventory(rHItem))
+                {
+                    SetRHand(null);
+                    returnMessage = "You pocket the " + itemName + ".";
+                }
+                else
+                {
+                    returnMessage = "You don't have space in your inventory to pocket that item.";
+                }
+            }
+            else if ((lHItem != null) && lHItem.GetName().ToLower().Equals(itemName))
+            {
+                if (AddItemToInventory(lHItem))
+                {
+                    SetLHand(null);
+                    returnMessage = "You pocket the " + itemName + ".";
+                }
+                else
+                {
+                    returnMessage = "You don't have space in your inventory to pocket that item.";
+                }
+            }
+
+            return returnMessage;
+        }
+
+        /// <summary>
+        /// View the description of an equipped item.
+        /// </summary>
+        /// <param name="itemName"></param>
+        /// <returns></returns>
+        public string View(string itemName)
+        {
+            string returnMessage = GameStrings.NotEquipped;
+
+            IItem item = InventoryService.SearchForItemInListByName(itemName, GetItemsInHands());
+            if (item != null)
+            {
+                returnMessage = item.GetDescription();
+            }
+
+            return returnMessage;
+        }
+
+        private string InHandToString()
+        {
+            string retVal = "";
+            string rHMessage = "";
+            string lHMessage = "";
+            int numEmptyHands = GetNumberOfEmptyHands();
+            if (numEmptyHands > 0)
+            {
+                retVal += "Empty hands: " + numEmptyHands;
+                // This is the only time we will see an "empty hands" message AND an "in-hand" message.
+                if (numEmptyHands == 1)
+                {
+                    retVal += "\n";
+                }
+            }
+            IItem lHandItem = GetLHand();
+            if (lHandItem != null)
+            {
+                lHMessage = "In your left hand, you are holding the " + lHandItem.GetName() + ".";
+            }
+            IItem rHandItem = GetRHand();
+            if (rHandItem != null)
+            {
+                rHMessage = "In your right hand, you are holding the " + rHandItem.GetName() + ".";
+            }
+
+            // Splice in possible left hand:
+            if (lHMessage.Length > 0)
+            {
+                retVal += lHMessage;
+            }
+            // Splice in possible right hand:
+            if (rHMessage.Length > 0)
+            {
+                // Add space if a left hand message exists.
+                if (lHMessage.Length > 0)
+                {
+                    retVal += "\n";
+                }
+                retVal += rHMessage;
+            }
+            return retVal;
+        }
+
+        public List<IItem> GetItemsInHands()
+        {
+            List<IItem> retVal = new List<IItem>
+            {
+                rHand,
+                lHand
+            };
+            return retVal;
+        }
+
+        public IItem GetRHand()
+        {
+            return rHand;
+        }
+        public void SetRHand(IItem item)
+        {
+            rHand = item;
+        }
+
+        public IItem GetLHand()
+        {
+            return lHand;
+        }
+        public void SetLHand(IItem item)
+        {
+            lHand = item;
+        }
+
+        public int GetNumberOfEmptyHands()
+        {
+            int count = 2;
+            if (GetRHand() != null)
+            {
+                count--;
+            }
+            if (GetLHand() != null)
+            {
+                count--;
+            }
+            return count;
+        }
+
+        #endregion
+
     }
 }
