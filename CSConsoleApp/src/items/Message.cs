@@ -1,4 +1,4 @@
-﻿namespace CSConsoleApp.src.items
+﻿namespace THWOR.src.items
 {
     class Message : ItemBase
     {

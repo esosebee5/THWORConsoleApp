@@ -1,6 +1,6 @@
-﻿using CSConsoleApp.src.rooms;
+﻿using THWOR.src.rooms;
 
-namespace CSConsoleApp.src.items.itemBase
+namespace THWOR.src.items.itemBase
 {
     class KeyBase : ItemBase, IKey
     {

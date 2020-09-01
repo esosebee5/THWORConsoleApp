@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSConsoleApp.src.core.services
+namespace THWOR.src.core.services
 {
     class FileWriterExperimental
     {

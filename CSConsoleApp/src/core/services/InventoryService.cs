@@ -1,7 +1,7 @@
-﻿using CSConsoleApp.src.items;
+﻿using THWOR.src.items;
 using System.Collections.Generic;
 
-namespace CSConsoleApp.src.core.services
+namespace THWOR.src.core.services
 {
     class InventoryService
     {

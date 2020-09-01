@@ -1,9 +1,9 @@
-﻿using CSConsoleApp.src.core.services;
-using CSConsoleApp.src.items;
-using CSConsoleApp.src.titles;
+﻿using THWOR.src.core.services;
+using THWOR.src.items;
+using THWOR.src.titles;
 using System.Collections.Generic;
 
-namespace CSConsoleApp.src.characters
+namespace THWOR.src.characters
 {
     class Player
     {

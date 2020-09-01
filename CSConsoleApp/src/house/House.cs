@@ -1,8 +1,8 @@
-﻿using CSConsoleApp.src.core.models.rooms;
+﻿using THWOR.src.core.models.rooms;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSConsoleApp.src.rooms
+namespace THWOR.src.rooms
 {
     class House
     {

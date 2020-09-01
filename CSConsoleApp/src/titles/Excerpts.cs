@@ -1,4 +1,4 @@
-﻿namespace CSConsoleApp.src.titles
+﻿namespace THWOR.src.titles
 {
     class Excerpts
     {

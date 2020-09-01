@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSConsoleApp.src.rooms.doors
+namespace THWOR.src.rooms.doors
 {
     class Door
     {

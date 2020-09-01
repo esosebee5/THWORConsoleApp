@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSConsoleApp.src.characters
+namespace THWOR.src.characters
 {
     enum NpcTypes
     {

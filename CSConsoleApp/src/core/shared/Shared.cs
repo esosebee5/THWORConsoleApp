@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSConsoleApp.src.core.shared
+namespace THWOR.src.core.shared
 {
     class Shared
     {

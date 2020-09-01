@@ -1,8 +1,8 @@
-﻿using CSConsoleApp.src.items;
-using CSConsoleApp.src.rooms;
+﻿using THWOR.src.items;
+using THWOR.src.rooms;
 using System.Collections.Generic;
 
-namespace CSConsoleApp.src.core.models.rooms
+namespace THWOR.src.core.models.rooms
 {
     interface IRoom
     {

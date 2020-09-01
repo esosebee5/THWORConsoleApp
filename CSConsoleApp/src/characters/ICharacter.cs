@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSConsoleApp.src.core.models
+namespace THWOR.src.core.models
 {
     interface ICharacter
     {
