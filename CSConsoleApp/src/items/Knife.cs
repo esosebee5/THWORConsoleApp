@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CSConsoleApp.src.items.itemBase;
 
 namespace CSConsoleApp.src.items
 {
-    class Knife
+    class Knife : WeaponBase
     {
         #region Java Code
 
@@ -61,5 +59,15 @@ namespace CSConsoleApp.src.items
         ////    }
 
         #endregion
+
+        public Knife(
+            string name = "knife",
+            string description = "A small, sharp, folding pocketknife with a wooden handle.",
+            int size = 1,
+            int damage = 2,
+            string damageType = "blade",
+            string attackVerb = "slash")
+            : base(name, description, size, damage, damageType, attackVerb)
+        { }
     }
 }

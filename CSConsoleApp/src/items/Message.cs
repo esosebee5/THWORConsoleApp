@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CSConsoleApp.src.items
+﻿namespace CSConsoleApp.src.items
 {
-    class Message
+    class Message : ItemBase
     {
         #region Java Code
 
@@ -41,5 +37,12 @@ namespace CSConsoleApp.src.items
         //}
 
         #endregion
+
+        public Message(
+            string name = "message",
+            string description = "The scrap of paper has a single word scrawled into it: CoconutCavalry",
+            int size = 1)
+            : base(name, description, size)
+        { }
     }
 }

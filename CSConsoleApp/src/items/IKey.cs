@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CSConsoleApp.src.rooms;
 
 namespace CSConsoleApp.src.items
 {
@@ -9,11 +7,16 @@ namespace CSConsoleApp.src.items
         #region Java Code
 
         /**
-     *
-     * @return the room id that this key unlocks
-     */
+         *
+         * @return the room id that this key unlocks
+         */
         //int unlocks();
 
         #endregion
+
+        /// <summary>
+        /// Returns the room id that this key unlocks
+        /// </summary>
+        RoomId Unlocks();
     }
 }

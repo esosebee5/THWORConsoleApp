@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CSConsoleApp.src.items
+﻿namespace CSConsoleApp.src.items
 {
-    class Flashlight
+    class Flashlight : ItemBase
     {
         #region Java Code
 
@@ -40,5 +36,11 @@ namespace CSConsoleApp.src.items
         //}
 
         #endregion
+
+        public Flashlight(
+            string name = "flashlight",
+            string description = "A large flashlight with a cracked and faded blue plastic casing.",
+            int size = 2)
+            : base(name, description, size) { }
     }
 }

@@ -1,28 +1,11 @@
-﻿using CSConsoleApp.src.rooms;
-using System;
+﻿using CSConsoleApp.src.items;
+using CSConsoleApp.src.rooms;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CSConsoleApp.src.core.models.rooms
 {
     interface IRoom
     {
-        #region Java code
-
-        ///**
-        // * If the room itself contains a monster, this returns a reference to that monster
-        // * Used to decide if the player is able to leave a room
-        // * @return reference to the monster contained by the room
-        // */
-        //SimpleMonster getMonster();
-
-        ///**
-        // *
-        // */
-        //void attack();
-
-        #endregion
-
         #region Room Info
 
         RoomId GetId();
@@ -40,7 +23,7 @@ namespace CSConsoleApp.src.core.models.rooms
         /// TODO: modify for item type
         /// </summary>
         /// <returns></returns>
-        List<int> GetItems();
+        List<IItem> GetItems();
 
         /// <summary>
         /// Adds an item to the room's list of available items
@@ -48,7 +31,7 @@ namespace CSConsoleApp.src.core.models.rooms
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        bool AddItem(int item);
+        bool AddItem(IItem item);
 
         /// <summary>
         /// Removes an item from the room's list of available items
@@ -56,9 +39,9 @@ namespace CSConsoleApp.src.core.models.rooms
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        bool RemoveItem(int item);
+        bool RemoveItem(IItem item);
 
-        string Search(string objectName = null);
+        string SearchBasic(string objectName = null);
 
         #endregion
 
@@ -73,7 +56,21 @@ namespace CSConsoleApp.src.core.models.rooms
         /// </summary>
         /// <param name="direction"></param>
         /// <returns></returns>
-        int Go(string direction);
+        RoomId Go(string direction);
+
+        #endregion
+
+        #region Monster/Combat
+
+        ///**
+        // * If the room itself contains a monster, this returns a reference to that monster
+        // * Used to decide if the player is able to leave a room
+        // * @return reference to the monster contained by the room
+        // */
+        //SimpleMonster getMonster();
+
+        // TODO: probably shouldn't be void...?
+        //public void Attack();
 
         #endregion
 

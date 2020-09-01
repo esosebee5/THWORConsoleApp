@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CSConsoleApp.src.housewithoneroom
+﻿namespace CSConsoleApp.src.housewithoneroom
 {
     class Start
     {
@@ -64,14 +60,6 @@ namespace CSConsoleApp.src.housewithoneroom
         //        Game.currentRoom = Game.house.getCorridor().getFirst();
         //    }
 
-        //    // Show starting stats
-        //    output(Game.player.showCharacterReport());
-        //    outputLn();
-
-        //    Game.visitedRooms.add(Game.currentRoom);
-        //    output(Game.currentRoom.getDescription());
-        //    outputLn();
-
 
         //    // Herein lies the major flow of the game
         //    while (Game.state)
@@ -90,28 +78,6 @@ namespace CSConsoleApp.src.housewithoneroom
         //    }
         //}
 
-        ///**
-        // * Gets the name and gender of the player from the user
-        // * and creates the player
-        // */
-        //private static void initializePlayer()
-        //{
-        //    //in order to make startup easier for myself:
-        //    if (admin)
-        //    {
-        //        Game.player = new Player("CoconutCavalry", "male");
-        //        outputLn("Welcome, " + Game.player.getName() + ".\n");
-        //    }
-        //    else
-        //    {
-        //        outputForInput("Enter name: ");
-        //        String name = IOService.getNextLine();
-        //        outputForInput("Male or female? ");
-        //        String gender = IOService.getNextLine();
-        //        Game.player = new Player(name, gender);
-        //        outputLn("\nWelcome, " + Game.player.getPronouns()[0] + " " + Game.player.getName() + ".\n");
-        //    }
-        //}
         ///**
         // * Gets the starting room number from the user
         // * @return the player object
@@ -135,18 +101,6 @@ namespace CSConsoleApp.src.housewithoneroom
         //    }
 
         //    return retVal;
-        //}
-
-        ///**
-        // * Sanitizes input (toLowerCase) and splits it into separate words
-        // * @param input the user input that needs to be split and sanitized
-        // * @return an array of words
-        // */
-        //private static String[] splitAndSanitizeInput(String input)
-        //{
-        //    String sanitizedInput = input.toLowerCase();
-        //    //        String[] infoArray = sanitizedInput.split("\\s+");
-        //    return sanitizedInput.split("\\s+");
         //}
 
         ///**
@@ -343,47 +297,6 @@ namespace CSConsoleApp.src.housewithoneroom
         //    }
         //}
 
-        //private static void tryGoing(String direction)
-        //{
-        //    if (Game.currentRoom.getMonster() != null)
-        //    {
-        //        SimpleMonster monster = Game.currentRoom.getMonster();
-        //        if (!monster.isDead())
-        //        {
-        //            output("The " + monster.getName() + " blocks your path.\n" +
-        //                    "You cannot leave while the " + monster.getName() + " is alive.");
-        //            return;
-        //        }
-        //    }
-        //    int roomId = Game.currentRoom.go(direction);
-        //    if (roomId > -1)
-        //    {
-        //        Game.currentRoom =
-        //                Game.house.getCorridor().get(roomId);
-        //        if (Game.visitedRooms.contains(Game.currentRoom))
-        //        {
-        //            output("You are now in the "
-        //                    + Game.currentRoom.getName() + ".");
-        //        }
-        //        else
-        //        {
-        //            Game.visitedRooms.add(Game.currentRoom);
-        //            output(Game.currentRoom.getDescription());
-        //        }
-
-        //    }
-        //    else if (roomId == -1)
-        //    {
-        //        output(GameStrings.GoInvalidDirection);
-        //    }
-        //    else if (roomId == -99)
-        //    {
-        //        // roomId -99 is endGameWin
-        //        // Do nothing; necessary actions have already taken place.
-        //        // Here, it just needs to fall through back to the main loop so that it can exit.
-        //    }
-        //}
-
         //private static void tryViewingItem(String itemName)
         //{
         //    iItem item = Shared.searchForItemInListByName(
@@ -466,19 +379,6 @@ namespace CSConsoleApp.src.housewithoneroom
 
 
 
-        //private static boolean validateNoun(String[] inputs)
-        //{
-        //    if (inputs.length > 1)
-        //    {
-        //        if (inputs[1] != null)
-        //        {
-        //            return true;
-        //        }
-        //        output(GameStrings.InvalidNoun);
-        //        return false;
-        //    }
-        //    return false;
-        //}
 
         //// TODO: this method needs some work before implementing
         ////    private static void showItemStats(String command) {
@@ -490,14 +390,6 @@ namespace CSConsoleApp.src.housewithoneroom
         ////            output(GameStrings.NotInInventory);
         ////        }
         ////    }
-
-        ///**
-        // * Displays an informative dialogue about possible actions
-        // */
-        //private static void showHelpDialogue()
-        //{
-        //    output(GameStrings.HelpDialogue);
-        //}
 
         #endregion
     }

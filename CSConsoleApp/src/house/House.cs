@@ -1,9 +1,6 @@
 ﻿using CSConsoleApp.src.core.models.rooms;
-using CSConsoleApp.src.core.services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CSConsoleApp.src.rooms
 {
@@ -47,14 +44,17 @@ namespace CSConsoleApp.src.rooms
         /// </summary>
         private void BuildCorridor()
         {
-            Corridor = new List<IRoom>();
-            Corridor.Add(new Library());
-
-            // Test corridor structure:
-            foreach (IRoom room in Corridor)
+            Corridor = new List<IRoom>
             {
-                IO.OutputNewLine(room.GetName());
-            }
+                new Library(),
+                new Study(),
+                new Hall(),
+                new DiningRoom(),
+                new ComputerRoom(),
+                new Kitchen(),
+                new Pantry(),
+                new UpstairsHallway()
+            };
         }
 
         /// <summary>
@@ -64,6 +64,15 @@ namespace CSConsoleApp.src.rooms
         public IRoom GetFirstRoom()
         {
             return Corridor.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns the first room of the corridor
+        /// </summary>
+        /// <returns></returns>
+        public IRoom GetRoomById(RoomId roomId)
+        {
+            return Corridor.Find(x => x.GetId() == roomId);
         }
 
 
