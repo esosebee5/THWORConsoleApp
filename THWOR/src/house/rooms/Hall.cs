@@ -1,4 +1,5 @@
-﻿using THWOR.src.core.services;
+﻿using THWOR.src.characters;
+using THWOR.src.core.services;
 using THWOR.src.items;
 using THWOR.src.titles;
 
@@ -244,7 +245,7 @@ namespace THWOR.src.rooms
         private bool ComputerRoomIsLocked = true;
         private readonly string ComputerRoomPassword = "CoconutCavalry";
         private readonly string description = RoomDescriptions.Hall;
-        private readonly string guardianAliveSearch = RoomDescriptions.hallFirstSearch;
+        private readonly string guardianAliveSearch = RoomDescriptions.GuardianEntrance;
         private readonly string roomSearch = RoomDescriptions.hallOtherSearch;
 
         #endregion
@@ -264,16 +265,45 @@ namespace THWOR.src.rooms
             AddItem(new Torch());
         }
 
+        #region Inventory Methods
+
+        /*************
+         * INVENTORY * 
+         *************/
+
+        public string Search()
+        {
+            string message = RoomDescriptions.hallOtherSearch;
+
+            if (monster != null && monster.isDead())
+            {
+                message = SearchBasic();
+            }
+            else
+            {
+                // If the guardian doesn't exist, create it
+                if (monster == null)
+                {
+                    monster = MonsterFactory.GenerateGuardian();
+                    message = RoomDescriptions.GuardianEntrance;
+                }
+                else
+                {
+                    // If the guardian does exist, deal with it
+                    message = "The Guardian is here.\n" + message;
+                }
+            }
+
+            return message;
+        }
+
+        #endregion
+
         #region Navigation
 
         /**************
          * NAVIGATION *
          **************/
-
-        public override bool CanLeave()
-        {
-            return true; // TODO: fill out when MONSTER is implemented
-        }
 
         public override RoomId Go(string direction)
         {
@@ -346,7 +376,7 @@ namespace THWOR.src.rooms
                     break;
                 case "s":
                 case "search":
-                    IO.OutputNewLine(SearchBasic());
+                    IO.OutputNewLine(Search());
                     break;
                 default:
                     IO.OutputNewLine(GameStrings.PerformCustomMethodsBadInput);

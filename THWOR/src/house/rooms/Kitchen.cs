@@ -56,7 +56,7 @@ namespace THWOR.src.rooms
          **************/
 
         private readonly RoomId[] Neighbors = {
-            RoomId.Hall,
+            RoomId.DiningRoom,
             RoomId.Pantry
         };
 
@@ -81,11 +81,6 @@ namespace THWOR.src.rooms
         /**************
          * NAVIGATION *
          **************/
-
-        public override bool CanLeave()
-        {
-            return true; // TODO: fill out when MONSTER is implemented
-        }
 
         public override RoomId Go(string direction)
         {

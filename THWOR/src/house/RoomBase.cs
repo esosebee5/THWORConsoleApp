@@ -3,6 +3,7 @@ using THWOR.src.core.services;
 using THWOR.src.items;
 using THWOR.src.titles;
 using System.Collections.Generic;
+using THWOR.src.characters;
 
 namespace THWOR.src.rooms
 {
@@ -124,7 +125,10 @@ namespace THWOR.src.rooms
         private readonly string Name;
         private readonly string Description;
         private readonly string FirstSearchDescription;
+
         protected bool HasBeenSearched;
+        protected SimpleMonster monster;
+        
         public List<IItem> Inventory;
 
         #endregion
@@ -161,7 +165,19 @@ namespace THWOR.src.rooms
 
         public virtual string GetDescription()
         {
-            return Description;
+            string message = Description;
+            if (monster != null)
+            {
+                if (monster.isDead())
+                {
+                    message += $"\nThere is a dead {monster.name} here.";
+                }
+                else
+                {
+                    message += $"\nThere is {monster.getNameLong()} here.";
+                }
+            }
+            return message;
         }
 
         #endregion
@@ -234,6 +250,17 @@ namespace THWOR.src.rooms
 
                 searchResults += itemsStringList;
             }
+            if (monster != null)
+            {
+                if (monster.isDead())
+                {
+                    searchResults += $"\nThere is a dead {monster.name} here.";
+                }
+                else
+                {
+                    searchResults += $"\nThere is a {monster.name} here.";
+                }
+            }
             //        ArrayList<iItem> itemsInRoom = this.getItems();
             //        if (itemsInRoom.isEmpty())
             //        {
@@ -259,7 +286,28 @@ namespace THWOR.src.rooms
          * NAVIGATION *
          **************/
 
-        public abstract bool CanLeave();
+        //public bool CanLeave()
+        //{
+        //    var canLeave = true;
+
+        //    if (monster != null && !monster.isDead())
+        //    {
+        //        DisplayMonsterInPath();
+        //        canLeave = false;
+        //    }
+
+        //    return canLeave;
+        //}
+
+        //protected virtual void DisplayMonsterInPath()
+        //{
+        //    // if monster
+        //    if (monster != null && !monster.isDead())
+        //    {
+        //        IO.OutputNewLine($"The {monster.name} blocks your path." +
+        //                $"\nYou cannot leave while the {monster.name} is alive.");
+        //    }
+        //}
 
         /// <summary>
         /// Must be implemented by the individual room
@@ -272,78 +320,49 @@ namespace THWOR.src.rooms
 
         #region Monster/Combat
 
-        ///**
-        // *
-        // * @return null for now because there is no monster yet
-        // */
-        //public SimpleMonster getMonster()
-        //{
-        //    return null;
-        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public SimpleMonster getMonster()
+        {
+            return monster;
+        }
 
-        //public void attack()
-        //{
-        //    // First, check if there is a monster to fight
-        //    SimpleMonster monster = this.getMonster();
-        //    if (monster == null)
-        //    {
-        //        output(Gamestrings.NothingToAttackHerestring);
-        //        return;
-        //    }
-        //    else if (monster.isDead())
-        //    {
-        //        output("The " + monster.getName() + " is dead.");
-        //    }
-        //    else
-        //    {
-        //        // If a monster exists, attack it
-        //        Shared.attack(monster);
-        //        if (monster.isDead())
-        //        {
-        //            output("You have slain the " + monster.getName() + ".");
-        //        }
-        //        else
-        //        {
-        //            // If the monster is still alive, defend against its attack:
-        //            Shared.defend(monster);
-        //            if (Game.player.isDead())
-        //            {
-        //                Game.state = false;
-        //                output(Game.player.death);
-        //            }
-        //        }
-        //    }
-        //}
+        public string GenerateMonster(string name)
+        {
+            string message;
+            if (monster != null && !monster.isDead())
+            {
+                message = $"There is already a {monster.name} here.";
+            }
+            else
+            {
+                var generateSuccessful = false;
+                switch (name)
+                {
+                    case "gremlin":
+                        monster = MonsterFactory.GenerateGremlin();
+                        generateSuccessful = true;
+                        break;
+                }
+                if (generateSuccessful)
+                {
+                    message = $"Generate successful. There is now a {monster.name} here.";
+                }
+                else
+                {
+                    message = "Generate unsuccessful. Try again.";
+                }
+            }
+            return message;
+        }
 
         #endregion
 
         #region CustomMethods
 
         public abstract void PerformCustomMethods(string[] inputs);
-
-        //public void performCustomMethods(string[] inputs)
-        //{
-        //    //        switch (inputs[0]) {
-        //    //            case "s":
-        //    //            case "search":
-        //    //                output(this.search());
-        //    //                break;
-        //    //            default:
-        //    output(Gamestrings.PerformCustomMethodsBadInput);
-        //    //        }
-        //}
-
-        ////    private string search() {
-        ////        ArrayList<IItem> itemsInRoom = this.getItems();
-        ////        if (itemsInRoom.isEmpty()) {
-        ////            return "There are no items to be found here.";
-        ////        }
-        ////        if (!this.hasBeenSearched) {
-        ////            this.hasBeenSearched = true;
-        ////        }
-        ////        return Shared.appendDescriptionToItemsstring(
-        ////                RoomDescriptions.defaultSearchDescription, itemsInRoom);
-        ////    }
 
         #endregion
     }

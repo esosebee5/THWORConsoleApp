@@ -45,21 +45,6 @@ namespace THWOR.src.rooms
         //     * Getters and setters *
         //     ***********************/
 
-        //    public int getId()
-        //    {
-        //        return id;
-        //    }
-
-        //    public String getName()
-        //    {
-        //        return name;
-        //    }
-
-        //    public String getDescription()
-        //    {
-        //        return description;
-        //    }
-
         //    private boolean getHasBeenSearched()
         //    {
         //        return this.hasBeenSearched;
@@ -368,11 +353,6 @@ namespace THWOR.src.rooms
         /**************
          * NAVIGATION *
          **************/
-
-        public override bool CanLeave()
-        {
-            return true; // TODO: fill out when MONSTER is implemented
-        }
 
         public override RoomId Go(string direction)
         {

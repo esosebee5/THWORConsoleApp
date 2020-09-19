@@ -1,6 +1,7 @@
 ﻿using THWOR.src.items;
 using THWOR.src.rooms;
 using System.Collections.Generic;
+using THWOR.src.characters;
 
 namespace THWOR.src.core.models.rooms
 {
@@ -47,7 +48,7 @@ namespace THWOR.src.core.models.rooms
 
         #region Navigation
 
-        bool CanLeave();
+        //bool CanLeave();
 
         /// <summary>
         /// Return roomId if direction is valid, -1 if direction is invalid,
@@ -62,15 +63,14 @@ namespace THWOR.src.core.models.rooms
 
         #region Monster/Combat
 
-        ///**
-        // * If the room itself contains a monster, this returns a reference to that monster
-        // * Used to decide if the player is able to leave a room
-        // * @return reference to the monster contained by the room
-        // */
-        //SimpleMonster getMonster();
+        /**
+         * If the room itself contains a monster, this returns a reference to that monster
+         * Used to decide if the player is able to leave a room
+         * @return reference to the monster contained by the room
+         */
+        SimpleMonster getMonster();
 
-        // TODO: probably shouldn't be void...?
-        //public void Attack();
+        string GenerateMonster(string name);
 
         #endregion
 

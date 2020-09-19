@@ -18,10 +18,10 @@ namespace THWOR.src.core.services
                 //////////
                 // ROOM //
                 //////////
-                //case "a":
-                //case "attack":
-                    //tryToAttack();
-                    //break;
+                case "a":
+                case "attack":
+                    DisplayMessage(Game.TryToAttack());
+                    break;
                 case "c":
                 case "character":
                     DisplayMessage(Game.Player.ShowCharacterReport());
@@ -73,6 +73,16 @@ namespace THWOR.src.core.services
                     else
                     {
                         DisplayMessage("Try including a direction after 'go'.");
+                    }
+                    break;
+                case "generate":
+                    if (ValidateNoun(commands))
+                    {
+                        DisplayMessage(Game.GenerateMonster(commands[1]));
+                    }
+                    else
+                    {
+                        DisplayMessage("Name the monster you would like to generate.");
                     }
                     break;
                 case "h":

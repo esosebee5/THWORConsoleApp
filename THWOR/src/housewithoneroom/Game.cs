@@ -241,46 +241,36 @@ namespace THWOR.src.housewithoneroom
         public static void TryGoing(string direction)
         {
             // TODO: implement Monster/CanLeave stuff
-            //if (CurrentRoom.GetMonster() != null)
-            //{
-            //    SimpleMonster monster = CurrentRoom.GetMonster();
-            //    if (!monster.isDead())
-            //    {
-            //        output("The " + monster.getName() + " blocks your path.\n" +
-            //                "You cannot leave while the " + monster.getName() + " is alive.");
-            //        return;
-            //    }
-            //}
-            RoomId roomId = CurrentRoom.Go(direction);
-            if (roomId > RoomId.NoRoom)
+            // TODO: push monster check into RoomBase???
+            var monster = CurrentRoom.getMonster();
+            if (monster == null || monster.isDead())
             {
-                MoveToRoom(roomId);
+                RoomId roomId = CurrentRoom.Go(direction);
+                if (roomId > RoomId.NoRoom)
+                {
+                    MoveToRoom(roomId);
+                }
+                else
+                {
+                    switch (roomId)
+                    {
+                        case RoomId.EndGame:
+                            IO.OutputNewLine(EndGame(true));
+                            break;
+                        case RoomId.NoRoom:
+                            IO.OutputNewLine(GameStrings.GoInvalidDirection);
+                            break;
+                        case RoomId.RoomIsLocked:
+                            IO.OutputNewLine(GameStrings.DoorIsLocked);
+                            break;
+                    }
+                }
             }
             else
             {
-                switch (roomId)
-                {
-                    case RoomId.EndGame:
-                        IO.OutputNewLine(EndGame(true));
-                        break;
-                    case RoomId.NoRoom:
-                        IO.OutputNewLine(GameStrings.GoInvalidDirection);
-                        break;
-                    case RoomId.RoomIsLocked:
-                        IO.OutputNewLine(GameStrings.DoorIsLocked);
-                        break;
-                }
+                IO.OutputNewLine($"The {monster.name} blocks your path." +
+                    $"\nYou cannot leave while the {monster.name} is alive.");
             }
-
-
-
-            // Commenting out the below block (don't think it's necessary)
-            //else if (roomId == -99)
-            //{
-            //    // roomId -99 is endGameWin
-            //    // Do nothing; necessary actions have already taken place.
-            //    // Here, it just needs to fall through back to the main loop so that it can exit.
-            //}
         }
 
         /// <summary>
@@ -390,6 +380,49 @@ namespace THWOR.src.housewithoneroom
         public static void TryViewingItem(string itemName)
         {
             IO.OutputNewLine(Player.View(itemName));
+        }
+
+        public static string TryToAttack()
+        {
+            string message = GameStrings.NothingToAttackHereString;
+
+            var monster = CurrentRoom.getMonster();
+
+            // First, check if there is a monster to fight
+            if (monster != null)
+            {
+                if (monster.isDead())
+                {
+                    message = $"The {monster.name} is dead.";
+                }
+                else
+                {
+                    // If a monster exists, attack it
+                    message = CombatService.Attack(monster);
+                    if (monster.isDead())
+                    {
+                        message += $"\n{monster.deathMessage}";
+                    }
+                    else
+                    {
+                        // If the monster is still alive, defend against its attack:
+                        message += "\n" + CombatService.Defend(monster);
+                        if (Player.isDead())
+                        {
+                            state = false;
+                            message += "\n" + Player.death;
+                        }
+                    }
+                }
+            }
+
+            return message;
+        }
+
+        public static string GenerateMonster(string name)
+        {
+            // Pass directly into current room
+            return CurrentRoom.GenerateMonster(name);
         }
 
         #endregion
